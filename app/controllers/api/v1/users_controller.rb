@@ -1,3 +1,6 @@
+module Api
+  module V1
+
 class UsersController < ApplicationController
   def index
     render json: User.all
@@ -27,4 +30,6 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :email, :password, :phone, :dob, :gender, :address)
   end
 
+end
+end 
 end

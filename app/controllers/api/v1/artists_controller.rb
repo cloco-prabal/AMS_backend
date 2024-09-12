@@ -1,4 +1,7 @@
-class ArtistsController < ApplicationController
+
+module Api
+  module V1
+  class ArtistsController < ApplicationController
   def index
     render json: Artist.all
 
@@ -26,4 +29,6 @@ class ArtistsController < ApplicationController
     params.require(:artist).permit(:name, :dob, :gender, :address, :first_release_year, :no_of_albums_released)
   end
 
+    end
+  end 
 end

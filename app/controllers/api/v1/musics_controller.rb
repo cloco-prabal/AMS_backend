@@ -1,3 +1,5 @@
+module Api
+  module V1
 class MusicsController < ApplicationController
   def index
     render json: Music.all
@@ -28,4 +30,6 @@ class MusicsController < ApplicationController
 
  end
 
+end
+end
 end

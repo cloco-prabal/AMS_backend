@@ -1,3 +1,6 @@
+
+module Api
+  module V1
 class RolesController < ApplicationController
   def index
     render json: Role.all
@@ -24,4 +27,6 @@ class RolesController < ApplicationController
   def role_params
     params.require(:role).permit(:title)
   end
+end
+end
 end
