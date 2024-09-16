@@ -3,6 +3,7 @@ module Api
   module V1
 class RolesController < ApplicationController
   def index
+    
     render json: Role.all
   end
 

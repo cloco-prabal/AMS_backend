@@ -24,6 +24,11 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 
+gem 'bcrypt', '~> 3.1', '>= 3.1.12'
+
+gem 'jwt', '~> 2.5'
+
+gem 'active_model_serializers', '~> 0.10.12'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

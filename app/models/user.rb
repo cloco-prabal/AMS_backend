@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    belongs_to :role
+    has_secure_password
     enum gender: { m: 0, f: 1, o: 2 }
   
     validates :first_name, presence: true
