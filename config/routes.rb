@@ -11,17 +11,13 @@ Rails.application.routes.draw do
   # root "posts#index"
   namespace :api do
     namespace :v1 do
-    
       get "/me", to: "users#me"
       post "/auth/login", to: "auth#login"
-
+      get "/artists/musics/:artistId"  =>"musics#getByArtistId"
       resources :roles, only: [:index, :create, :destroy]
-      resources :users, only: [:index, :create, :destroy,:update]
-      resources :artists, only: [:index, :create, :destroy,:update]
+      resources :users, only: [:index, :create, :destroy,:update,:show]
+      resources :artists, only: [:index, :create, :destroy,:update,:show]
       resources :musics, only: [:index, :create, :destroy,:update,:show]
-
-
     end
   end
-
 end

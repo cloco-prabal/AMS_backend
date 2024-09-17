@@ -4,22 +4,17 @@ module Api
 class UsersController < ApplicationController
   skip_before_action :authorized, only: [:create]
   def index
-    sql_query = "SELECT id, first_name, last_name, email, address, gender, dob FROM users"
-    @users = ActiveRecord::Base.connection.exec_query(sql_query)
-    # Convert the result to an array of hashes
-    users_array = @users.map do |row|
-      {
-        id: row['id'],
-        first_name: row['first_name'],
-        last_name: row['last_name'],
-        email: row['email'],
-        address: row['address'],
-        gender: row['gender'],
-        dob: row['dob']
+    
+    users = User.page(params[:page]||1).per(params[:pageSize]||10)
+    render json: {
+      data:users,
+      pagination:{
+        current_page: users.current_page,
+        total_pages: users.total_pages,
+        total_count: users.total_count
       }
-    end
+    }
   
-    render json: users_array
   end
 
   def update
@@ -45,6 +40,15 @@ class UsersController < ApplicationController
       render json:user.errors, status: :unprocessable_entity
     end
   
+  end
+
+  def show
+    user = User.find_by(id:params[:id])
+    if !user
+      render json: {message:"No user found with given id"}, status: :not_found
+    else
+      render json:  UserSerializer.new(user).as_json, status: :ok
+    end
   end
 
   def me 
