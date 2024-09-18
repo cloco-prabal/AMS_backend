@@ -3,7 +3,7 @@ module Api
   module V1
   class ArtistsController < ApplicationController
   def index
-    artists = Artist.page(params[:page]||1).per(params[:pageSize]||10)
+    artists = Artist.order(id: :desc).page(params[:page]||1).per(params[:pageSize]||10)
     render json: {
       data:artists,
       pagination: {

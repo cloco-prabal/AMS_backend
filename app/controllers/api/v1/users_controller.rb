@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   skip_before_action :authorized, only: [:create]
   def index
     
-    users = User.page(params[:page]||1).per(params[:pageSize]||10)
+    users = User.order(id: :desc).page(params[:page]||1).per(params[:pageSize]||10)
     render json: {
       data:users,
       pagination:{

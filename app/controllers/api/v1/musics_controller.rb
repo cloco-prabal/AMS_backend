@@ -3,7 +3,7 @@ module Api
 class MusicsController < ApplicationController
   def index
 
-    musics = Music.page(params[:page]||1).per(params[:pageSize]||10)
+    musics = Music.order(id: :desc).page(params[:page]||1).per(params[:pageSize]||10)
     render json: {
       data:musics,
       pagination:{
@@ -54,7 +54,7 @@ class MusicsController < ApplicationController
   end
 
   def getByArtistId
-    musics = Music.where("artist_id=?",params[:artistId]).page(params[:page])
+    musics = Music.order(id: :desc).where("artist_id=?",params[:artistId]).page(params[:page])
     .per(params[:pageSize] || 10)
     render json: {
       data: musics,
