@@ -29,6 +29,7 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem 'jwt', '~> 2.5'
 
 gem 'kaminari'
+gem 'cancancan'
 
 
 gem 'active_model_serializers', '~> 0.10.12'

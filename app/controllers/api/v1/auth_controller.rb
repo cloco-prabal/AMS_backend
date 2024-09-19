@@ -1,5 +1,7 @@
 class Api::V1::AuthController < ApplicationController
     skip_before_action :authorized, only: [:login]
+    skip_load_and_authorize_resource only: [:login]
+
     rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
 

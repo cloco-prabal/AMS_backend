@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_16_081959) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_19_064853) do
   create_table "artists", force: :cascade do |t|
     t.string "name"
     t.datetime "dob"
@@ -50,9 +50,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_16_081959) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role_id", default: 1
+    t.integer "artist_id"
+    t.index ["artist_id"], name: "index_users_on_artist_id"
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   add_foreign_key "musics", "artists"
+  add_foreign_key "users", "artists"
   add_foreign_key "users", "roles"
 end

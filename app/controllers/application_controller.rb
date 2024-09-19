@@ -1,6 +1,13 @@
 class ApplicationController < ActionController::API
     before_action :authorized
+    load_and_authorize_resource 
     rescue_from ActiveRecord::RecordNotDestroyed, with: :not_destroyed
+
+    rescue_from CanCan::AccessDenied do  |exception|
+        render json:  { error:exception.message }, status: :forbidden
+    end
+
+
 
 
     def encode_token(payload)
